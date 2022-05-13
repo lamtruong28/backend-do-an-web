@@ -26,6 +26,26 @@ class UserController {
         }, { new: true });
         res.status(200).json(user);
     }
+
+    handleLogin = async (req, res) => {
+        const { userName, password } = req.body;
+        const user = await User.findOne({ userName });
+        if (user) {
+            const checkPass = bcrypt.compareSync(password, user.password);
+            if (checkPass)
+                return res.status(200).json(user);
+            else
+                return res.status(500).json({
+                    code: 403,
+                    message: "Tài khoản hoặc mật khẩu không chính xác!"
+                });
+        } else {
+            return res.status(403).json({
+                code: 403,
+                message: "Tài khoản hoặc mật khẩu không chính xác!"
+            });
+        }
+    }
 };
 
 export default new UserController();

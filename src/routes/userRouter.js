@@ -6,5 +6,6 @@ const route = Router();
 route.get('/info/:id', userController.getUserInfo)
 route.post('/create', userController.createUser);
 route.post('/update/:id', userController.updateUser);
+route.post('/login', userController.handleLogin);
 
 export default route;

@@ -3,6 +3,8 @@ import productController from "../app/controllers/ProductController.js";
 
 const route = Router();
 
-route.use('/create', productController.getProduct);
+route.get('/', productController.getProduct);
+route.post('/add-new', productController.addProduct);
+route.post('/remove/:id', productController.removeProduct);
 
 export default route;
