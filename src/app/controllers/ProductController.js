@@ -8,7 +8,7 @@ class ProductController {
         } catch (error) {
             console.log(error);
         }
-    }
+    };
     addProduct = async (req, res) => {
         try {
             const data = req.body;
@@ -18,7 +18,7 @@ class ProductController {
         } catch (error) {
             console.log(error);
         }
-    }
+    };
     removeProduct = async (req, res) => {
         try {
             const product = await Product.findByIdAndDelete({ _id: req.params.id })
@@ -26,7 +26,16 @@ class ProductController {
         } catch (error) {
             console.log(error);
         }
-    }
+    };
+    editProduct = async (req, res) => {
+        try {
+            const payload = req.body;
+            const product = await Product.findByIdAndUpdate({ _id: req.params.id }, { ...payload }, { new: true });
+            res.status(200).json(product);
+        } catch (error) {
+            console.log(error);
+        }
+    };
 }
 
 export default new ProductController();

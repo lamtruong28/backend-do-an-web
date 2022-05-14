@@ -1,9 +1,11 @@
 import mongoose from "mongoose";
 const schema = mongoose.Schema;
 const Product = new schema({
-    name: { type: String, required: true },
-    description: { type: String, required: true },
-    price: { type: Number, required: true, default: 0 },
+    name: { type: String },
+    description: { type: String },
+    price: { type: Number, default: 0 },
+    promotion: { type: Number, default: 0 },
+    sold: { type: Number, default: 0 },
     attachment: { type: String },
 }, {
     timestamps: true,
